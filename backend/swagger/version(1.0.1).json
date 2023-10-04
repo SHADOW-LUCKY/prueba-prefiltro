@@ -234,6 +234,218 @@
         }
       }
     }
+  },
+  "/quesos/getall": {
+    "get": {
+      "tags": [
+        "quesos"
+      ],
+      "summary": "Get all Cheeses",
+      "description": "Obtiene una lista con todos los quesos existentes",
+      "parameters": [],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Quesos"
+                },
+                "example": {
+                  "quesos": [
+                    {
+                      "_id": "1234",
+                      "name": "queso",
+                      "description": "Este es un quesito",
+                      "available": true,
+                      "imagen":"https://images.unsplash.com/photo-1559560923-3b80329ea420?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=320&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2hlZXNlfHx8fHx8MTY5NjQyNzY0Nw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=320"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "NOT OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "no schema defined"
+                },
+                "example": {
+                  "error": "Bad Request (could change)"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/quesos/create": {
+    "post": {
+      "tags": [
+        "quesos"
+      ],
+      "summary": "Creates a Cheese",
+      "description": "Crea un quesito en la base de datos",
+      "requestBody": { 
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/definitions/Quesos"
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "msg": "created successfully"
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "NOT OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "error": "Bad Request (could change)"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/quesos/delete/{_id}": {
+    "delete": {
+      "tags": [
+        "quesos"
+      ],
+      "summary": "Deletes a Cheese",
+      "description": "Elimina un quesito de la base de datos",
+      "parameters": [
+        {
+          "name": "_id",
+          "in": "path",
+          "required": true,
+          "description": "Id of the Cheese to delete",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "msg": "deleted successfully"
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "NOT OK", 
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "error": "Bad Request (could change)"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/quesos/update/{_id}": {
+    "patch": {
+      "tags": [
+        "quesos"
+      ],
+      "summary": "Updates a Cheese",
+      "description": "Actualiza un quesito de la base de datos",
+      "parameters": [
+        {
+          "name": "_id",
+          "in": "path",
+          "required": true,
+          "description": "Id of the Cheese to update",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/definitions/Quesos"
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "msg": "updated successfully"
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "NOT OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "error": "Bad Request (could change)"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "salsas/getall": {
+    "get": {
+      "tags": [
+        "salsas"
+      ]
+    }
   }
 },
 "definitions": {
@@ -278,6 +490,48 @@
       "imagen": {
         "type": "string",
         "example": "Test.png"
+      }
+    }
+  },
+  "Quesos": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "example": "Queso"
+      },
+      "description": {
+        "type": "string",
+        "example": "Esta es la descripcion de un dato relacionado con quesos"  
+      },
+      "available": {
+        "type": "boolean",
+        "example": true
+      },
+      "imagen": {
+        "type": "string",
+        "example": "https://images.unsplash.com/photo-1559560923-3b80329ea420?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=320&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2hlZXNlfHx8fHx8MTY5NjQyNzY0Nw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=320"
+      }
+    }
+  },
+  "Salsas": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "example": "Salsa"
+      },
+      "description": {
+        "type": "string",
+        "example": "Esta es la descripcion de un dato relacionado con salsas"    
+      },
+      "available": {
+        "type": "boolean",
+        "example": true
+      },
+      "imagen": {
+        "type": "string",
+        "example":"https://santaisabel.vtexassets.com/arquivos/ids/199191-360-360?width=360&height=360&aspect=true"
       }
     }
   }

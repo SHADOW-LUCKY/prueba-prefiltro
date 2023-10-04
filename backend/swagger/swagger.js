@@ -11,7 +11,7 @@ const swaggerDocs = (app,port)=>{
         res.send(swaggerDocument);
     })
 
-    console.log(`Version 1.0.1 running available at http://localhost:${port}/api-docs.json`);
+    console.log(`Version 1.0.1 running available at http://localhost:${port}/api-docs & JSON version (http://localhost:${port}/api-docs.json)`);
 }
 
 export default swaggerDocs
