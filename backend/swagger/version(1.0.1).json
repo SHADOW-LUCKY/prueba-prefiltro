@@ -440,11 +440,397 @@
       }
     }
   },
-  "salsas/getall": {
+  "/salsas/getall": {
     "get": {
       "tags": [
         "salsas"
-      ]
+      ],
+      "summary": "Get all Salsas",
+      "description": "Obtiene una lista con todos las salsas existentes",
+      "parameters":[],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Salsas"
+                },
+                "example": {
+                  "salsas": [
+                    {
+                      "_id": "1234",
+                      "name": "salsa",
+                      "type": "Salsa",
+                      "available": true,
+                      "imagen":"https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/753ce060eea2ca1.png"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "NOT OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "error": "Bad Request (could change)"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/salsas/create": {
+    "post": {
+      "tags": [
+        "salsas"
+      ],
+      "summary": "Creates a Salsa",
+      "description": "Crea una salsa en la base de datos",
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/definitions/Salsas"
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "msg": "created successfully"
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "NOT OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "error": "Bad Request (could change)"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/salsas/delete/{_id}": {
+    "delete": {
+      "tags": [
+        "salsas"
+      ],
+      "summary": "Deletes a Salsa",
+      "description": "Elimina una salsa de la base de datos",
+      "parameters": [
+        {
+          "name": "_id",
+          "in": "path",
+          "required": true,
+          "description": "Id of the Salsa to delete",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "msg": "deleted successfully"
+                }
+              }              
+            }
+          }
+        },
+        "400": {
+          "description": "NOT OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "error": "Bad Request (could change)"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/salsas/update/{_id}": {
+    "patch": {
+      "tags": [
+        "salsas"
+      ],
+      "summary": "Updates a Salsa",
+      "description": "Actualiza una salsa de la base de datos",
+      "parameters": [
+        {
+          "name": "_id",
+          "in": "path",
+          "required": true,
+          "description": "Id of the Salsa to update",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/definitions/Salsas"
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "msg": "updated successfully"
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "NOT OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "error": "Bad Request (could change)"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/bordes/getall": {
+    "get": {
+      "tags": [
+        "bordes"
+      ],
+      "summary": "Get all Bordes",
+      "description": "Obtiene una lista con todos los bordes existentes",
+      "parameters":[],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Bordes"
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "NOT OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "error": "Bad Request (could change)"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/bordes/create": {
+    "post": {
+      "tags": [
+        "bordes"
+      ],
+      "summary": "Creates a Borde",
+      "description": "Crea un borde en la base de datos",
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/definitions/Bordes"
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "msg": "created successfully"
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "NOT OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "error": "Bad Request (could change)"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/bordes/delete/{_id}": {
+    "delete": {
+      "tags": [
+        "bordes"
+      ],
+      "summary": "Deletes a Borde",
+      "description": "Elimina un borde de la base de datos",
+      "parameters": [
+        {
+          "name": "_id",
+          "in": "path",
+          "required": true,
+          "description": "Id of the Borde to delete",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "msg": "deleted successfully"
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "NOT OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "error": "Bad Request (could change)"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/bordes/update/{_id}": {
+    "patch": {
+      "tags": [
+        "bordes"
+      ],
+      "summary": "Updates a Borde",
+      "description": "Actualiza un borde de la base de datos",
+      "parameters": [
+        {
+          "name": "_id",
+          "in": "path",
+          "required": true,
+          "description": "Id of the Borde to update",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/definitions/Bordes"
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "msg": "updated successfully"
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "NOT OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "error": "Bad Request (could change)"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 },
@@ -532,6 +918,27 @@
       "imagen": {
         "type": "string",
         "example":"https://santaisabel.vtexassets.com/arquivos/ids/199191-360-360?width=360&height=360&aspect=true"
+      }
+    }
+  },
+  "Bordes": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "example": "Borde"
+      },
+      "description": {
+        "type": "string",
+        "example": "Esta es la descripcion de un dato relacionado con bordes"
+      },
+      "available": {
+        "type": "boolean",
+        "example": true
+      },
+      "imagen": {
+        "type": "string",
+        "example": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3YpvCD0bp8_jkpMoMiN5lnr-hZTjJsKQ4bsEnj4wSdOo805ainPab2sqvphJgFRidQ8o&usqp=CAU"
       }
     }
   }
