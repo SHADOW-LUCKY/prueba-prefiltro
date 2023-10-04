@@ -18,7 +18,7 @@ export const getBordes = async (req, res) => {
 export const createBorde = async (req, res) => {
     try {
         const db = await DBconnection();
-        const {name, available,imagen,type} = req.body
+        const {name, available,imagen,description} = req.body
         const data = {
             name,
             description,
