@@ -1,13 +1,17 @@
 /* react */
-import { useState ,useContext } from 'react';
+import { useState, useContext } from 'react';
 /* imagenes */
 import pizzaimg from '../assets/pizza.png';
 /* componentes */
 import Menu_list from './Menu_list';
+/* contextos */
+import { CollectionContext } from '../contexts/CollectionContext';
 
 const Menu = (props) => {
   /* useState */
   const [open, setOpen] = useState(false)
+  /* contexto */
+  const {collec} = useContext(CollectionContext)
   /* Return */
     return (
      <div>
@@ -39,6 +43,11 @@ const Menu = (props) => {
                   <h1>Welcome to The Pizza Api</h1>
                 </div>
                   <Menu_list />
+                    <div className="flex justify-center mt-5">
+                        <label className="btn btn-primary w-5/6 " htmlFor="modal-3" >
+                            <h1>Add {collec}</h1>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
