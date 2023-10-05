@@ -4,17 +4,27 @@ import { useState , useEffect, useContext} from 'react';
 import { CollectionContext } from '../contexts/CollectionContext';
 /* componentes */
 import Post from './Post';
+/* axios */
+import axios from 'axios';
 /* Tailwind CSS */
 import './all.css'
 
-const Show = (props) => {
-    console.log(props);
-    /* props */
-    const {d} = props
+const Show = () => {
     /* useState */
     const [data, setData] = useState([]);
     /* contexto */
     const {collec} = useContext(CollectionContext)
+    /* funciones */
+    const deleteData = async (id) => {
+        try {
+            const response = await axios.delete(`http://localhost:4579/${collec}/delete/${id}`);
+            console.log(response);
+            alert('Ingrediente Eliminado')
+            window.location.reload(); 
+        } catch (error) {
+            console.log(error);
+        }    
+    }
     /* useEffect */
     useEffect(() => {          
         try {
@@ -43,7 +53,7 @@ const Show = (props) => {
         
         <div className="flex flex-wrap justify-center h-screen">
         {data.map((item) => (
-        <div className="lg:w-1/6 sm:w-60 md:w-1/4 m-2 w-full rounded overflow-hidden shadow-lg  bg-slate-600 h-70" key={item._id}  >
+        <div className="lg:w-1/6 sm:w-60 md:w-1/4 m-2 w-full rounded overflow-hidden shadow-lg h-fit bg-slate-600 h-70" key={item._id}  >
             <img className="w-full h-fit" src={item.imagen} alt="..."/>
                 <div className="px-4 py-4">
                   <div className="font-bold text-xl mb-2">{item.name}</div>
@@ -52,7 +62,7 @@ const Show = (props) => {
                   </p>
                 </div>
                 <div className="flex content-end p-2 ">
-                    <button className="btn btn-solid-error" onClick={() => d(item._id)}>Delete</button>
+                    <button type='button' className="rounded p-2 btn-solid-error" onClick={() => deleteData(item._id)} >Delete</button>
                 </div>
               </div>
             ))}
