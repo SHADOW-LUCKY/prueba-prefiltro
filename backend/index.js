@@ -7,6 +7,7 @@ import toppingsRoutes from './src/routes/toppings.routes.js';
 import quesosRoutes from './src/routes/quesos.routes.js';
 import salsasRoutes from './src/routes/salsas.routes.js';
 import bordesRoutes from './src/routes/bordes.routes.js';
+import acompRoutes from './src/routes/acomp.routes.js';
 /* swagger */
 import swaggerDocs from './swagger/swagger.js';
 /* configuracion */
@@ -22,6 +23,7 @@ app.use ('/toppings',toppingsRoutes);
 app.use ('/quesos',quesosRoutes);
 app.use ('/salsas',salsasRoutes);
 app.use ('/bordes',bordesRoutes);
+app.use ('/acomp',acompRoutes);
 
 
 const port = process.env.PORT 

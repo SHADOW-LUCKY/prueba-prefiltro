@@ -832,6 +832,174 @@
         }
       }
     }
+  },
+  "/acomp/getall": {
+    "get": {
+    "summary": "Obtener todos los acompañamientos",
+    "tags": ["Acompañamientos"],
+    "responses": {
+      "200": {
+        "description": "Lista de acompañamientos obtenida exitosamente",
+        "content": {
+          "application/json": {
+            "example": [
+              {
+                "_id": "60726eb22a0c1b001f7e2c5e",
+                "name": "Acompañamiento 1",
+                "description": "Descripción del Acompañamiento 1",
+                "available": true,
+                "imagen": "https://ejemplo.com/imagen1.jpg"
+              },
+              {
+                "_id": "60726eb22a0c1b001f7e2c5f",
+                "name": "Acompañamiento 2",
+                "description": "Descripción del Acompañamiento 2",
+                "available": false,
+                "imagen": "https://ejemplo.com/imagen2.jpg"
+              }
+            ]
+          }
+        }
+      },
+      "400": {
+        "description": "Error al obtener la lista de acompañamientos"
+      }
+    }
+    }
+  },
+  "/acomp/create": {
+    "post": {
+    "summary": "Crear un nuevo acompañamiento",
+    "tags": ["Acompañamientos"],
+    "requestBody": {
+      "description": "Datos del acompañamiento a crear",
+      "required": true,
+      "content": {
+        "application/json": {
+          "example": {
+            "name": "Nuevo Acompañamiento",
+            "description": "Descripción del Nuevo Acompañamiento",
+            "available": true,
+            "imagen": "https://ejemplo.com/imagen3.jpg"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "Acompañamiento creado exitosamente",
+        "content": {
+          "application/json": {
+            "example": {
+              "msg": "Acompañamiento creado",
+              "data": {
+                "_id": "60726eb22a0c1b001f7e2c60",
+                "name": "Nuevo Acompañamiento",
+                "description": "Descripción del Nuevo Acompañamiento",
+                "available": true,
+                "imagen": "https://ejemplo.com/imagen3.jpg"
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Error al crear el acompañamiento"
+      }
+    }
+    }
+  },
+  "/acomp/update/{id}": {
+    "patch": {
+    "summary": "Actualizar un acompañamiento existente",
+    "tags": ["Acompañamientos"],
+    "parameters": [
+      {
+        "in": "path",
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "ID del acompañamiento a actualizar"
+      }
+    ],
+    "requestBody": {
+      "description": "Nuevos datos del acompañamiento",
+      "required": true,
+      "content": {
+        "application/json": {
+          "example": {
+            "name": "Acompañamiento Actualizado",
+            "description": "Descripción Actualizada",
+            "available": false,
+            "imagen": "https://ejemplo.com/imagen4.jpg"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "Acompañamiento actualizado exitosamente",
+        "content": {
+          "application/json": {
+            "example": {
+              "msg": "Acompañamiento actualizado",
+              "data": {
+                "_id": "60726eb22a0c1b001f7e2c60",
+                "name": "Acompañamiento Actualizado",
+                "description": "Descripción Actualizada",
+                "available": false,
+                "imagen": "https://ejemplo.com/imagen4.jpg"
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Error al actualizar el acompañamiento"
+      }
+    }
+      }
+  },
+  "/acomp/delete/{id}": {
+    "delete": {
+    "summary": "Eliminar un acompañamiento existente",
+    "tags": ["Acompañamientos"],
+    "parameters": [
+      {
+        "in": "path",
+        "name": "id",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "ID del acompañamiento a eliminar"
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Acompañamiento eliminado exitosamente",
+        "content": {
+          "application/json": {
+            "example": {
+              "msg": "Acompañamiento eliminado",
+              "data": {
+                "_id": "60726eb22a0c1b001f7e2c60",
+                "name": "Acompañamiento Eliminado",
+                "description": "Descripción Eliminada",
+                "available": false,
+                "imagen": "https://ejemplo.com/imagen4.jpg"
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Error al eliminar el acompañamiento"
+      }
+    }
+    }
   }
 },
 "definitions": {
