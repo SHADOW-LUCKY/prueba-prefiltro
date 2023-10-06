@@ -45,7 +45,7 @@ const Menu = (props) => {
                   <Menu_list />
                     <div className="flex justify-center mt-5">
                         <label className="btn btn-primary w-5/6 " htmlFor="modal-3" >
-                            <h1>Add {collec}</h1>
+                            <h1>Add {collec==='acomp'?'acompañamiento':collec}</h1>
                         </label>
                     </div>
                 </div>

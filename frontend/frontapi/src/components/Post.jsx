@@ -40,14 +40,14 @@ export default function Post() {
 			<section>
 				<div className="form-group">
 					<div className="form-field">
-						<label className="form-label">Nombre de {collec}</label>
+						<label className="form-label">Nombre de {collec==='acomp'?'acompañamiento':collec}</label>
 						<input  type="text" className="input max-w-full" onChange={(e) => setName(e.target.value)} />
 					</div>
                     {collec === 'toppings'?
 
                         <div className="form-field">
                             <label className="form-label">
-                                <span>Tipo de {collec}</span>
+                                <span>Tipo de {collec==='acomp'?'acompañamiento':collec}</span>
                             </label>
                             <div className="form-control">
                                 <select name="Type" id="" className="select" onChange={(e) => setType(e.target.value)}>
@@ -62,7 +62,7 @@ export default function Post() {
                             <label className="form-label">
                                 <span>Descripcion </span>
                             </label>
-                            <textarea onChange={(e) => setDescription(e.target.value)} placeholder={`Ej: este es el ejemplo de un ${collec}`} type="text" className="textarea textarea-solid" cols="30" rows="10"></textarea>
+                            <textarea onChange={(e) => setDescription(e.target.value)} placeholder={`Ej: este es el ejemplo de un ${collec==='acomp'?'acompañamiento':collec}`} type="text" className="textarea textarea-solid" cols="30" rows="10"></textarea>
                         </div>
 
                     }
@@ -76,7 +76,7 @@ export default function Post() {
 
 					<div className="form-field pt-5">
 						<div className="form-control justify-between">
-							<button type="button" className="btn btn-primary w-full" onClick={postData}>Agregar {collec}</button>
+							<button type="button" className="btn btn-primary w-full" onClick={postData}>Agregar {collec==='acomp'?'acompañamiento':collec}</button>
 						</div>
 					</div>
 				</div>

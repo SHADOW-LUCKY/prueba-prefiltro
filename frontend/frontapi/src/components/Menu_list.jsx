@@ -6,11 +6,11 @@ import { useContext } from 'react';
 export default function List() {
     const value = useContext(CollectionContext)
 
-    const arraymenus = ['toppings','quesos','salsas','bordes']
+    const arraymenus = ['toppings','quesos','salsas','bordes','acomp']
 
     return (
         arraymenus.map((item) => (
-          <div key={item} className='text-center text-white text-xl hover:bg-orange-400 cursor-pointer py-3 mb-2' onClick={() => value.setCollec(item)}>{`Ver ${item}`}</div>
+          <div key={item} className='text-center text-white text-xl hover:bg-orange-400 cursor-pointer py-3 mb-2' onClick={() => value.setCollec(item)}>{`Ver ${item==='acomp'?'acompañamientos':item}`}</div>
         ))
     )
 }

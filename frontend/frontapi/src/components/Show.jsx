@@ -12,6 +12,7 @@ import './all.css'
 const Show = () => {
     /* useState */
     const [data, setData] = useState([]);
+    const [load, setLoad] = useState(false);
     /* contexto */
     const {collec} = useContext(CollectionContext)
     /* funciones */
@@ -29,11 +30,14 @@ const Show = () => {
     useEffect(() => {          
         try {
             const fetchData = async () => {
+                setLoad(true);
                 const response = await fetch(`http://localhost:4579/${collec}/getall`);
                 const res = await response.json();
                 setData(res);
+                setLoad(false);
             }
             fetchData();
+            
         } catch (error) {
             console.log(error);
         }
@@ -48,12 +52,20 @@ const Show = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>
             </label>
-            
         </div>
         
-        <div className="flex flex-wrap justify-center h-screen">
+        {load?(<div className="absolute w-full lg:w-5/6 h-screen flex justify-center items-center">
+            <div>
+                <div className="spinner-wave spinner-xl">
+	                <div className="spinner-wave-dot"></div>
+	                <div className="spinner-wave-dot"></div>
+	                <div className="spinner-wave-dot"></div>
+	                <div className="spinner-wave-dot"></div>
+                </div>
+            </div>
+        </div>):(<div className="flex flex-wrap justify-center h-screen">
         {data.map((item) => (
-        <div className="lg:w-1/6 sm:w-60 md:w-1/4 m-2 w-full rounded overflow-hidden shadow-lg h-fit bg-slate-600 h-70" key={item._id}  >
+        <div className="lg:w-1/6 sm:w-60 md:w-1/4 m-2 w-full rounded overflow-hidden shadow-lg h-fit bg-slate-600 h-70" key={item._id}>
             <img className="w-full h-fit" src={item.imagen} alt="..."/>
                 <div className="px-4 py-4">
                   <div className="font-bold text-xl mb-2">{item.name}</div>
@@ -66,7 +78,7 @@ const Show = () => {
                 </div>
               </div>
             ))}
-        </div>
+        </div>)}
         <Post />
     </div>
     )
